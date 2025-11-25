@@ -102,7 +102,7 @@ p {
   font-size: 30px;
   padding: 10px;
   margin: 6px;
-  margin-right:0px;
+  margin-right:6px;
  }
 
 .bs {
@@ -126,7 +126,7 @@ p {
 }
 
 .peso{
-  margin-right:0px;
+  margin-right:5px;
 }
 
 input {
