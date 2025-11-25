@@ -2,9 +2,15 @@ document.addEventListener("DOMContentLoaded", function () {
   fetch("tasas.json")
     .then(res => res.json())
     .then(data => {
-      document.getElementById("usd").textContent = data.bsToUsd;
-      document.getElementById("eur").textContent = data.bsToEur;
-      document.getElementById("cop").textContent = data.copToUsd;
+      // Venezuela
+      document.getElementById("dolarBs").textContent = data.bsToUsd.toFixed(2);
+      document.getElementById("euroBs").textContent = data.bsToEur.toFixed(2);
+
+      // Colombia
+      document.getElementById("dolarCop").textContent = data.copToUsd.toFixed(2);
+      // Euro en COP = (bsToEur / bsToUsd) * copToUsd
+      const euroCop = (data.bsToEur / data.bsToUsd) * data.copToUsd;
+      document.getElementById("euroCop").textContent = euroCop.toFixed(2);
     })
     .catch(error => {
       console.error("Error al cargar tasas.json:", error);
