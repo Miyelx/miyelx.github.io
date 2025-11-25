@@ -16,26 +16,19 @@
   <div>
     <h2 class="info"><img src="MIG(copia).png" width="50px"></h2>
   </div>  
-  
-  <table>
-    <tr><th>Moneda</th><th>Valor</th></tr>
-    <tr><td>Bs → USD</td><td id="usd">Cargando...</td></tr>
-    <tr><td>Bs → EUR</td><td id="eur">Cargando...</td></tr>
-    <tr><td>COP → USD</td><td id="cop">Cargando...</td></tr>
-  </table>
 
 <section class="caja">
   <!-- Bloque de precios a la izquierda -->
   <div class="divisas">
     <p class="precios"> 
        -Venezuela(Bolívar):
-       <br>💵 Dólar: {{"%.2f"|format(dolar)}} Bs. 
-       <br> 💶 Euro: {{"%.2f"|format(euro)}} Bs.
+       <br>💵 Dólar: <span id="dolarBs">Cargando...</span> Bs. 
+       <br> 💶 Euro: <span id="euroBs">Cargando...</span> Bs.
      </p>
      <p class="precios">
       -Colombia(Pesos):
-       <br>💵️ Dólar: {{peso}} Cop.
-       <br>💶 Euro: {{"%.2f"|format((euro|float / dolar|float)*(peso|float))}} Cop.
+       <br>💵️ Dólar: <span id="doalrCop">Cargando...</span> Cop.
+       <br>💶 Euro: <span id="euroCop">Cargando...</span> Cop.
      </p>
   </div>
   
