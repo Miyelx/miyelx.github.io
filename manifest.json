@@ -13,8 +13,8 @@
       "type": "image/png"
     }
   ],
-  "start_url": "/MIdolar.mig/",
-  "scope": "/MIdolar.mig/",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#FFFFFF",
   "theme_color": "#000000",
