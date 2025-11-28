@@ -31,7 +31,7 @@ body {
   background-color: rgba(255,255,255,0.6);
   border-radius:60px;
   gap: 20px;
-  box-shadow: 6px 6px 12px rgba(0,0,0,0.5);
+  box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
 }
 
 /* Bloque de precios */
@@ -45,7 +45,7 @@ body {
   color: white;
   padding: 20px;
   border-radius: 50px;
-  box-shadow: 6px 6px 12px rgba(0,0,0,0.5);
+  box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
   text-align: center;
   margin-bottom:20px;
 }
@@ -77,7 +77,7 @@ h2 {
   border-radius: 60px;
   margin-bottom: 20px;
   padding: 10px;
-  box-shadow: 6px 6px 12px rgba(0,0,0,0.5);
+  box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
 }
 
 .info{
@@ -135,7 +135,7 @@ footer {
   margin-left:110px;
   text-align: center;
   background-color:#08599AFF;
-  box-shadow: 6px 6px 12px rgba(0,0,0,0.5);
+  box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
   border-radius:60px 60px 0px 0px;
   padding:5px;
 }
