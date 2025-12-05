@@ -142,14 +142,14 @@ footer {
   }
   
   .info, footer{
-    margin-left:0px;
-    margin-right:0px;
+    margin-left:16px;
+    margin-right:16px;
   }
 
   .caja {
     flex-direction: column; /* apila precios y convertidor */
     align-items: center;
-    margin: 22px 14px 22px 14px;
+    margin: 20px 14px 20px 14px;
   }
 
   .contenedor{
