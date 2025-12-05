@@ -24,10 +24,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-top: 20px;
-  margin-bottom:25px;
-  margin-left:160px;
-  margin-right: 160px;
+  margin: 20px 160px 25px 160px;
   background-color: rgba(255,255,255,0.6);
   border-radius:60px;
   gap: 20px;
@@ -55,11 +52,9 @@ span{
 }
 
  .divisas {
-    width: 90%;   /* ocupa todo el ancho del contenedor padre */
+    width: 90%;   /* ocupa todo el 90% del ancho del contenedor padre */
     text-align: center;
-    margin-top:5px;
-    margin-left:10px;
-    margin-bottom:0px;
+    margin: 5px 0px 0px 10px;
   }
 /* Bloque del convertidor */
 .contenedor {
@@ -81,8 +76,7 @@ h2 {
 }
 
 .info{
-  margin-right:110px;
-  margin-left:110px; 
+  margin: 0px 110px;
   text-align: center;
   border-radius:0px 0px 60px 60px;
 }
@@ -130,9 +124,7 @@ input {
 
 footer {
   border-radius: 30px;
-  margin-top:5px;
-  margin-right:110px;
-  margin-left:110px;
+  margin: 5px 110px 0px 110px;
   text-align: center;
   background-color:#08599AFF;
   box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
@@ -162,9 +154,7 @@ footer {
   .caja {
     flex-direction: column; /* apila precios y convertidor */
     align-items: center;
-    margin-right:15px;
-    margin-left:15px;
-    margin-bottom:35px;
+    margin: 0px 15px 35px 14px;
   }
 
   .contenedor{
