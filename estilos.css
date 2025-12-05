@@ -120,7 +120,7 @@ input {
 
 footer {
   border-radius: 30px;
-  margin: 5px 110px 0px 110px;
+  margin: 25px 110px 0px 110px;
   text-align: center;
   background-color:#08599AFF;
   border-radius:60px 60px 0px 0px;
@@ -149,7 +149,7 @@ footer {
   .caja {
     flex-direction: column; /* apila precios y convertidor */
     align-items: center;
-    margin: 0px 15px 35px 14px;
+    margin: 35px 14px 35px 14px;
   }
 
   .contenedor{
