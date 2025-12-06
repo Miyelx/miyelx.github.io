@@ -1,16 +1,27 @@
 document.addEventListener("DOMContentLoaded", function () {
+  //precios nuevos
   const bsToUsd = 257.9287;//precios de las divisas (doalar)
   const bsToEur = 300.50756979;//euros
   const copToUsd = 3830.02;// dolar (peso colombiano)
+  //precios anteriores
+  const bstousd = 254.87;
+  const bstoeur = 297.38;
+  const coptousd = 3757.92;
 
+  const euroCop = (bsToEur / bsToUsd) * copToUsd;//calcular euro en base al precio del dolar para pesos
+  const eurocop = (bstoeur / bstousd) * coptousd;//calcular euro en base al precio del dolar para pesos(precio anterior)
+  
+  const aumentodolar= (bsToUsd - bstousd) / bstousd * 100;
+  const aumentoeuro= (bsToEur - bstoeur) / bstoeur * 100;
+  const aumentodolarcop= (copToUsd - coptousd) / coptousd * 100;
+  const aumentoeurocop= ( euroCop- eurocop) / eurocop * 100;
+    
   // Venezuela
-  document.getElementById("dolarBs").textContent = bsToUsd.toFixed(2);//datos enviados al index.html
-  document.getElementById("euroBs").textContent = bsToEur.toFixed(2);
-
+  document.getElementById("dolarBs").textContent = bsToUsd.toFixed(2) + "📈️" + aumentodolar.tofixed(2) + "%";//datos enviados al index.html 📈️ 📉️
+  document.getElementById("euroBs").textContent = bsToEur.toFixed(2) + "📈️" + aumentoeuro.tofixed(2) + "%";
   // Colombia
-  document.getElementById("dolarCop").textContent = copToUsd.toFixed(2);
-  const euroCop = (bsToEur / bsToUsd) * copToUsd;
-  document.getElementById("euroCop").textContent = euroCop.toFixed(2);
+  document.getElementById("dolarCop").textContent = copToUsd.toFixed(2) + "📈️" + aumentodolarcop.tofixed(2) + "%";
+  document.getElementById("euroCop").textContent = euroCop.toFixed(2) + "📈️" + aumentoeurocop.tofixed(2) + "%";
 
   // Inputs
   const bsInput = document.querySelectorAll("input")[0];
