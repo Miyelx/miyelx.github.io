@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const bsToUsd = 257.9287;//precios de las divisas (doalar)
   const bsToEur = 300.50756979;//euros
-  const copToUsd = 3757.92;// dolar (peso colombiano)
+  const copToUsd = 3830.02;// dolar (peso colombiano)
 
   // Venezuela
   document.getElementById("dolarBs").textContent = bsToUsd.toFixed(2);//datos enviados al index.html
