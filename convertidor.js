@@ -1,8 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
   //precios nuevos
-  const bsToUsd = 257.9287;//precios de las divisas (doalar)
-  const bsToEur = 300.50756979;//euros
-  const copToUsd = 3830.02;// dolar (peso colombiano)
+  fetch("tasas.json")
+    .then(response => response.json())
+    .then(data => {
+    const bsToUsd = data.dolar;//precios de las divisas (doalar)
+    const bsToEur = data.euro;//euros
+    const copToUsd = data.dolarcol;// dolar (peso colombiano)     
+  });
 
   const euroCop = (bsToEur / bsToUsd) * copToUsd;//calcular euro en base al precio del dolar para pesos 
   // Venezuela
