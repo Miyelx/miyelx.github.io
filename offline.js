@@ -1,4 +1,4 @@
-const CACHE_NAME = 'cache-pwa-v1';
+const CACHE_NAME = 'cache-pwa-v2';
 
 // Lista de archivos a cachear
 const urlsToCache = [
@@ -12,7 +12,8 @@ const urlsToCache = [
   '/dolar.png',
   '/col$.png',
   '/fondo2.png',
-  '/MIG(copia).png'
+  '/MIG(copia).png',
+  '/tasas.json'
 ];
 
 // Instalación: cachea todos los recursos
