@@ -128,7 +128,7 @@ footer {
 }
 
 .footer{
-  font-size:25px;
+  font-size:28px;
   border-radius:60px;
   padding:8px;
   color:white;
@@ -165,7 +165,7 @@ footer {
     margin-top:18px;
   }
 
-  h2 {
+  h2, .footer {
     font-size: 22px;
   }
 
@@ -180,8 +180,5 @@ footer {
     font-size: 25px;
   }
   
-  .footer{
-    font-size:22px;
-  }
 }
 
