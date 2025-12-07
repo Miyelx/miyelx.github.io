@@ -151,7 +151,6 @@ footer {
 
   .contenedor{
     width: 90%;
-    margin-top:0px;
   }
   
   .precios{
@@ -165,24 +164,14 @@ footer {
     margin-top:18px;
   }
 
-  h2 {
+  h2,.footer {
     font-size: 18px;
-  }
-
-  p {
-    font-size: 30px;
-    margin-right:15px;
   }
   
   input {
     height: 45px;
     width: 85%;
     font-size: 25px;
-  }
-
-  .footer{
-    font-size:18px;
-  }
-  
+  }  
 }
 
