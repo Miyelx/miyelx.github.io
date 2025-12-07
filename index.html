@@ -11,9 +11,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     <title>Midolar</title><!-- titulo de la pagina -->
    </head>
- <script>(function(s){s.dataset.zone='10291985',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script> 
-<script>(function(s){s.dataset.zone='10283552',s.src='https://groleegni.net/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-<script>(function(s){s.dataset.zone='10269835',s.src='https://gizokraijaw.net/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+
+  <!-- enlacesa a anuncios -->
+  <script>(function(s){s.dataset.zone='10291985',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script> 
+  <script>(function(s){s.dataset.zone='10283552',s.src='https://groleegni.net/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+  <script>(function(s){s.dataset.zone='10269835',s.src='https://gizokraijaw.net/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
   
 <body> <!-- Comienzo del cuerpo de la página -->
  
@@ -73,6 +75,14 @@
   </footer>
   
  <script src="convertidor.js"></script>
+ <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/offline.js')
+        .then(() => console.log('Service Worker registrado'))
+        .catch(err => console.error('Error al registrar SW:', err));
+    }
+  </script>
+  
 <body>
 
 </html>
