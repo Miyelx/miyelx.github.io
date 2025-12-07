@@ -175,6 +175,7 @@ footer {
   }
   
   input {
+    height: 10%;
     width: 85%;
     font-size: 25px;
   }
