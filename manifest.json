@@ -1,4 +1,5 @@
 {
+  "id":"MIdolar app",
   "name": "Midolar",
   "short_name": "Midolar",
   "icons": [
@@ -15,9 +16,9 @@
   ],
   "start_url": "/",
   "scope": "/",
-  "display": "minimal-ui",
+  "display": "standalone",
   "background_color": "#FFFFFF",
   "theme_color": "#000000",
-  "description": "Aplicación Midolar",
+  "description": "Aplicación Midolar para convertir monedas",
   "orientation": "any"
 }
