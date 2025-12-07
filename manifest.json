@@ -18,7 +18,7 @@
   "scope": "/",
   "display": "standalone",
   "background_color": "#FFFFFF",
-  "theme_color": "#2C9DC5",
+  "theme_color": "#000000",
   "description": "Aplicación Midolar para convertir monedas",
   "orientation": "any"
 }
