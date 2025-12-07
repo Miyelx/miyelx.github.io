@@ -15,7 +15,7 @@
   ],
   "start_url": "/",
   "scope": "/",
-  "display": "fullscreen",
+  "display": "minimal-ui",
   "background_color": "#FFFFFF",
   "theme_color": "#000000",
   "description": "Aplicación Midolar",
