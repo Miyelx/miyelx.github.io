@@ -6,8 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const bsToUsd = data.dolar;//precios de las divisas (doalar)
     const bsToEur = data.euro;//euros
     const copToUsd = data.dolarcol;// dolar (peso colombiano)     
-  });
-
+  
   const euroCop = (bsToEur / bsToUsd) * copToUsd;//calcular euro en base al precio del dolar para pesos 
   // Venezuela
   document.getElementById("dolarBs").textContent = bsToUsd.toFixed(2) + " Bs.";
@@ -83,4 +82,5 @@ document.addEventListener("DOMContentLoaded", function () {
   usdInput.addEventListener("input", convertFromUsd);
   eurInput.addEventListener("input", convertFromEur);
   copInput.addEventListener("input", convertFromCop);
+  });
 });
