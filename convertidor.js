@@ -17,11 +17,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const aumentoeurocop= ( euroCop- eurocop) / eurocop * 100;
     
   // Venezuela
-  document.getElementById("dolarBs").textContent = bsToUsd.toFixed(2) + " Bs." + "\n" + "(anterior)" + bstousd.toFixed(2) + " Bs.";//datos enviados al index.html 📈️ 📉️
-  document.getElementById("euroBs").textContent = bsToEur.toFixed(2) + " Bs." + "\n" + "(anterior)" + bstoeur.toFixed(2) + " Bs.";
+  document.getElementById("dolarBs").textContent = bsToUsd.toFixed(2) + " Bs." + "<br>" + "(anterior)" + bstousd.toFixed(2) + " Bs.";//datos enviados al index.html 📈️ 📉️
+  document.getElementById("euroBs").textContent = bsToEur.toFixed(2) + " Bs." + "<br>" + "(anterior)" + bstoeur.toFixed(2) + " Bs.";
   // Colombia
-  document.getElementById("dolarCop").textContent = copToUsd.toFixed(2) + " Col$." + "\n" + "(anterior)" + coptousd.toFixed(2) + " Col$";
-  document.getElementById("euroCop").textContent = euroCop.toFixed(2) + " Col$." + "\n" + "(anterior)" + coptoeur.toFixed(2) + "Col$";
+  document.getElementById("dolarCop").textContent = copToUsd.toFixed(2) + " Col$." + "<br>" + "(anterior)" + coptousd.toFixed(2) + " Col$";
+  document.getElementById("euroCop").textContent = euroCop.toFixed(2) + " Col$." + "<br>" + "(anterior)" + eurocop.toFixed(2) + "Col$";
 
   // Inputs
   const bsInput = document.querySelectorAll("input")[0];
