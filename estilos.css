@@ -165,7 +165,7 @@ footer {
     margin-top:18px;
   }
 
-  h2, .footer {
+  h2 {
     font-size: 22px;
   }
 
@@ -178,6 +178,10 @@ footer {
     height: 45px;
     width: 85%;
     font-size: 25px;
+  }
+
+  .footer{
+    font-size:18px;
   }
   
 }
