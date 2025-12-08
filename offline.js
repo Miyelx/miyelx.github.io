@@ -13,7 +13,8 @@ const urlsToCache = [
   '/col$.png',
   '/fondo2.png',
   '/MIG(copia).png',
-  '/tasas.json'
+  '/tasas.json',
+  '/manifest.json'
 ];
 
 // Instalación: cachea todos los recursos
