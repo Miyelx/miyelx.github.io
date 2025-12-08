@@ -3,18 +3,14 @@ document.addEventListener("DOMContentLoaded", function () {
   fetch("tasas.json")
     .then(response => response.json())
     .then(data => {
-    const bsToUsd = data.actual.dolar;//precios de las divisas (doalar)
-    const bsToEur = data.actual.euro;//euros
-    const copToUsd = data.actual.dolarcol;// dolar (peso colombiano)
-    const dolar_anterior = data.Anterior.dolar_anterior;
-    const euro_anterior = data.Anterior.euro_anterior;
+    const bsToUsd = data.dolar;//precios de las divisas (doalar)
+    const bsToEur = data.euro;//euros
+    const copToUsd = data.dolarcol;// dolar (peso colombiano)
   
   const euroCop = (bsToEur / bsToUsd) * copToUsd;//calcular euro en base al precio del dolar para pesos 
   // Venezuela
   document.getElementById("dolarBs").textContent = bsToUsd.toFixed(2) + " Bs.";
   document.getElementById("euroBs").textContent = bsToEur.toFixed(2) + " Bs.";
-      document.getElementById("dolarprevio").textContent = "-Anterior: " + dolar_anterior.toFixed(2) + " Bs.";
-      document.getElementById("europrevio").textContent = "-Anterior: " + euro_anterior.toFixed(2) + " Bs.";
       
   // Colombia
   document.getElementById("dolarCop").textContent = copToUsd.toFixed(2) + " Col$.";
