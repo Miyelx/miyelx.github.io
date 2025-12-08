@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
-  //precios nuevos
+  //precios nuevo
   fetch("tasas.json")
     .then(response => response.json())
     .then(data => {
     const bsToUsd = data.actual.dolar;//precios de las divisas (doalar)
     const bsToEur = data.actual.euro;//euros
     const copToUsd = data.actual.dolarcol;// dolar (peso colombiano)
-    const dolar_anterior = data.anterior.dolar_anterior;
-    const euro_anterior = data.anterior.euro_anterior;
+    const dolar_anterior = data.Anterior.dolar_anterior;
+    const euro_anterior = data.Anterior.euro_anterior;
   
   const euroCop = (bsToEur / bsToUsd) * copToUsd;//calcular euro en base al precio del dolar para pesos 
   // Venezuela
