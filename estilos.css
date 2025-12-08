@@ -51,10 +51,6 @@ span{
   font-size:22px;
 }
 
-.precios-anteriores{
-  font-size:18px;
-}
-
  .divisas {
     width: 90%;   /* ocupa todo el 90% del ancho del contenedor padre */
     text-align: center;
@@ -163,10 +159,6 @@ footer {
 
   span{
     font-size:20px;
-  }
-
-  .precios-anteriores{
-    font-size:16px;
   }
   
   .divisas {
