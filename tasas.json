@@ -1,12 +1,5 @@
 {
-    "actual": {
-        "dolar": 257.9287,
-        "euro": 300.50756979,
-        "dolarcol": 3830.02
-    },
-    "Anterior":{
-        "dolar_anterior": 254.87,
-        "euro_anterior": 297.38,
-        "dolarcol_anterior": 3757.92
-    }
+    "dolar": 257.9287,
+    "euro": 300.50756979,
+    "dolarcol": 3830.02
 }
