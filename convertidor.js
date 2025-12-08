@@ -13,8 +13,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // Venezuela
   document.getElementById("dolarBs").textContent = bsToUsd.toFixed(2) + " Bs.";
   document.getElementById("euroBs").textContent = bsToEur.toFixed(2) + " Bs.";
-      document.getElementById("dolarprevio").textContent = dolar_anterior.toFixed(2) + " Bs.";
-      document.getElementById("europrevio").textContent = euro_anterior.toFixed(2) + " Bs.";
+      document.getElementById("dolarprevio").textContent = "-Anterior: " + dolar_anterior.toFixed(2) + " Bs.";
+      document.getElementById("europrevio").textContent = "-Anterior: " + euro_anterior.toFixed(2) + " Bs.";
       
   // Colombia
   document.getElementById("dolarCop").textContent = copToUsd.toFixed(2) + " Col$.";
