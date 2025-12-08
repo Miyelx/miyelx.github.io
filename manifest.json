@@ -2,6 +2,8 @@
   "id":"MIdolar app",
   "name": "Midolar",
   "short_name": "Midolar",
+  "categories": ["finance", "tools", "productivity"],
+  "lang": "es-VE",
   "icons": [
     {
       "src": "MIG.png",
