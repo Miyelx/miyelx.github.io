@@ -1,72 +1,86 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
+  //precios nuevos
   fetch("tasas.json")
-    .then(res => res.json())
+    .then(response => response.json())
     .then(data => {
-      const bsToUsd = data.dolar;//precios de las divisas (doalar)
-      const bsToEur = data.euro;//euros
-      const copToUsd = data.dolarcol;// dolar (peso colombiano)
+    const bsToUsd = data.dolar;//precios de las divisas (doalar)
+    const bsToEur = data.euro;//euros
+    const copToUsd = data.dolarcol;// dolar (peso colombiano)     
+  
+  const euroCop = (bsToEur / bsToUsd) * copToUsd;//calcular euro en base al precio del dolar para pesos 
+  // Venezuela
+  document.getElementById("dolarBs").textContent = bsToUsd.toFixed(2) + " Bs.";
+  document.getElementById("euroBs").textContent = bsToEur.toFixed(2) + " Bs.";
+  // Colombia
+  document.getElementById("dolarCop").textContent = copToUsd.toFixed(2) + " Col$.";
+  document.getElementById("euroCop").textContent = euroCop.toFixed(2) + " Col$.";
 
-      const euroCop = (bsToEur / bsToUsd) * copToUsd;
-      // Mostrar tasas
-      document.getElementById("dolarBs").textContent = bsToUsd.toFixed(2) + " Bs.";
-      document.getElementById("euroBs").textContent = bsToEur.toFixed(2) + " Bs.";
-      document.getElementById("dolarCop").textContent = copToUsd.toFixed(2) + " Col$.";
-      document.getElementById("euroCop").textContent = euroCop.toFixed(2) + " Col$.";
+  // Inputs
+  const bsInput = document.querySelectorAll("input")[0];
+  const usdInput = document.querySelectorAll("input")[1];
+  const eurInput = document.querySelectorAll("input")[2];
+  const copInput = document.querySelectorAll("input")[3];
 
-      const [bsInput, usdInput, eurInput, copInput] = document.querySelectorAll("input");//inputs
+  function sanitize(value) {
+    return value.replace(",", ".").trim();
+  }
 
-      const sanitize = val => val.replace(",", ".").trim();
-      const isValid = val => /^-?\d+(\.\d+)?$/.test(val);
+  function isValidNumber(value) {
+    return /^-?\d+(\.\d+)?$/.test(value);
+  }
 
-      function convert(from, value) {
-        if (!isValid(value)) return;
-        const num = parseFloat(sanitize(value));
-        let bs, usd, eur, cop;
+  function convertFromBs() {
+    const raw = sanitize(bsInput.value);
+    if (!isValidNumber(raw)) return;
+    const bs = parseFloat(raw);
+    const usd = bs / bsToUsd;
+    const eur = bs / bsToEur;
+    const cop = usd * copToUsd;
+    usdInput.value = usd.toFixed(2);
+    eurInput.value = eur.toFixed(2);
+    copInput.value = cop.toFixed(2);
+  }
 
-        switch (from) {
-          case "bs":
-            bs = num;
-            usd = bs / bsToUsd;
-            eur = bs / bsToEur;
-            cop = usd * copToUsd;
-            usdInput.value = usd.toFixed(2);
-            eurInput.value = eur.toFixed(2);
-            copInput.value = cop.toFixed(2);            
-            break;
-          case "usd":
-            usd = num;
-            bs = usd * bsToUsd;
-            eur = bs / bsToEur;
-            cop = usd * copToUsd;
-            bsInput.value = usd.toFixed(2);
-            eurInput.value = eur.toFixed(2);
-            copInput.value = cop.toFixed(2);
-            break;
-          case "eur":
-            eur = num;
-            bs = eur * bsToEur;
-            usd = bs / bsToUsd;
-            cop = usd * copToUsd;
-            bsInput.value = usd.toFixed(2);
-            usdInput.value = eur.toFixed(2);
-            copInput.value = cop.toFixed(2);
-            break;
-          case "cop":
-            cop = num;
-            usd = cop / copToUsd;
-            bs = usd * bsToUsd;
-            eur = bs / bsToEur;
-            bsInput.value = usd.toFixed(2);
-            usdInput.value = eur.toFixed(2);
-            eurInput.value = cop.toFixed(2);
-            break;
-        }
+  function convertFromUsd() {
+    const raw = sanitize(usdInput.value);
+    if (!isValidNumber(raw)) return;
+    const usd = parseFloat(raw);
+    const bs = usd * bsToUsd;
+    const eur = bs / bsToEur;
+    const cop = usd * copToUsd;
+    bsInput.value = bs.toFixed(2);
+    eurInput.value = eur.toFixed(2);
+    copInput.value = cop.toFixed(2);
+  }
 
-      }
-      // Asignar eventos dinámicamente
-      bsInput.addEventListener("input", () => convert("bs", bsInput.value));
-      usdInput.addEventListener("input", () => convert("usd", usdInput.value));
-      eurInput.addEventListener("input", () => convert("eur", eurInput.value));
-      copInput.addEventListener("input", () => convert("cop", copInput.value));
-    });
+  function convertFromEur() {
+    const raw = sanitize(eurInput.value);
+    if (!isValidNumber(raw)) return;
+    const eur = parseFloat(raw);
+    const bs = eur * bsToEur;
+    const usd = bs / bsToUsd;
+    const cop = usd * copToUsd;
+    bsInput.value = bs.toFixed(2);
+    usdInput.value = usd.toFixed(2);
+    copInput.value = cop.toFixed(2);
+  }
+
+  function convertFromCop() {
+    const raw = sanitize(copInput.value);
+    if (!isValidNumber(raw)) return;
+    const cop = parseFloat(raw);
+    const usd = cop / copToUsd;
+    const bs = usd * bsToUsd;
+    const eur = bs / bsToEur;
+    bsInput.value = bs.toFixed(2);
+    usdInput.value = usd.toFixed(2);
+    eurInput.value = eur.toFixed(2);
+  }
+
+  // Asignar eventos
+  bsInput.addEventListener("input", convertFromBs);
+  usdInput.addEventListener("input", convertFromUsd);
+  eurInput.addEventListener("input", convertFromEur);
+  copInput.addEventListener("input", convertFromCop);
+  });
 });
