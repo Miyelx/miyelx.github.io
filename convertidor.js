@@ -7,14 +7,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const bsToEur = data.actual.euro;//euros
     const copToUsd = data.actual.dolarcol;// dolar (peso colombiano)
     const dolar_anterior = data.anterior.dolar_anterior;
-    const euro_anterior = data.anterior.dolar_anterior;
+    const euro_anterior = data.anterior.euro_anterior;
   
   const euroCop = (bsToEur / bsToUsd) * copToUsd;//calcular euro en base al precio del dolar para pesos 
   // Venezuela
   document.getElementById("dolarBs").textContent = bsToUsd.toFixed(2) + " Bs.";
   document.getElementById("euroBs").textContent = bsToEur.toFixed(2) + " Bs.";
-      document.getElementById("dolarBs").textContent = dolar_anterior.toFixed(2) + " Bs.";
-      document.getElementById("euroBs").textContent = euro_anterior.toFixed(2) + " Bs.";
+      document.getElementById("dolarprevio").textContent = dolar_anterior.toFixed(2) + " Bs.";
+      document.getElementById("europrevio").textContent = euro_anterior.toFixed(2) + " Bs.";
       
   // Colombia
   document.getElementById("dolarCop").textContent = copToUsd.toFixed(2) + " Col$.";
