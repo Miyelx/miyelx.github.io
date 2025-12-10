@@ -19,6 +19,25 @@ body {
   grid-template-rows: auto 1fr auto; /* Tres filas: encabezado, contenido flexible, pie */
 }
 
+.info,.caja,.precios,.di,footer {
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: drop 0.6s ease forwards;
+}
+
+.info:nth-child(1) { animation-delay: 0.2s; }
+.caja:nth-child(2) { animation-delay: 0.4s; }
+.precios:nth-child(3) { animation-delay: 0.6s; }
+.di:nth-child(4) { animation-delay: 0.8s; }
+footer:nth-child(5) { animation-delay: 1.0s}
+
+@keyframes drop {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Layout principal: precios a la izquierda, convertidor a la derecha */
 .caja {
   display: flex;
