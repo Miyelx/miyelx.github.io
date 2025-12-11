@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-  //precios
-    const bsToUsd = 265.0662;//precios de las divisas (doalar)
+  //precios nuevos
+    const bsToUsd = 265.0662;//precios de las divisas (dolar)
     const bsToEur = 308.81802697;//euros
     const copToUsd = 3854.28;// dolar (peso colombiano)     
   
@@ -30,48 +30,37 @@ document.addEventListener("DOMContentLoaded", function () {
     const raw = sanitize(bsInput.value);
     if (!isValidNumber(raw)) return;
     const bs = parseFloat(raw);
-    const usd = bs / bsToUsd;
-    const eur = bs / bsToEur;
-    const cop = usd * copToUsd;
-    usdInput.value = usd.toFixed(2);
-    eurInput.value = eur.toFixed(2);
-    copInput.value = cop.toFixed(2);
+    usdInput.value = (bs/bsToUsd).toFixed(2);
+    eurInput.value = (bs/bsToEur).toFixed(2);
+    copInput.value = ((bs/bsToUsd)*copToUsd).toFixed(2);
   }
 
   function convertFromUsd() {
     const raw = sanitize(usdInput.value);
     if (!isValidNumber(raw)) return;
     const usd = parseFloat(raw);
-    const bs = usd * bsToUsd;
-    const eur = bs / bsToEur;
-    const cop = usd * copToUsd;
-    bsInput.value = bs.toFixed(2);
-    eurInput.value = eur.toFixed(2);
-    copInput.value = cop.toFixed(2);
+    bsInput.value = (usd*bsToUsd).toFixed(2);
+    eurInput.value = ((usd*bsToUsd)/bsToEur).toFixed(2);
+    copInput.value = (usd*copToUsd).toFixed(2);
   }
 
   function convertFromEur() {
     const raw = sanitize(eurInput.value);
     if (!isValidNumber(raw)) return;
     const eur = parseFloat(raw);
-    const bs = eur * bsToEur;
-    const usd = bs / bsToUsd;
-    const cop = usd * copToUsd;
-    bsInput.value = bs.toFixed(2);
-    usdInput.value = usd.toFixed(2);
-    copInput.value = cop.toFixed(2);
+    bsInput.value = (eur*bsToEur).toFixed(2);
+    usdInput.value = (eur*(bsToUsd/bsToEur)).toFixed(2);
+    copInput.value = (((bsToEur / bsToUsd) * copToUsd)*eur).toFixed(2);
+                      
   }
 
   function convertFromCop() {
     const raw = sanitize(copInput.value);
     if (!isValidNumber(raw)) return;
     const cop = parseFloat(raw);
-    const usd = cop / copToUsd;
-    const bs = usd * bsToUsd;
-    const eur = bs / bsToEur;
-    bsInput.value = bs.toFixed(2);
-    usdInput.value = usd.toFixed(2);
-    eurInput.value = eur.toFixed(2);
+    bsInput.value = ((cop/copToUsd)*bsToUsd).toFixed(2);
+    usdInput.value = (cop/copToUsd).toFixed(2);
+    eurInput.value = (cop/((bsToEur / bsToUsd)*copToUsd)).toFixed(2);
   }
 
   // Asignar eventos
