@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   //precios nuevos
-    const bsToUsd = 282.5128;//precios de las divisas (dolar)
-    const bsToEur = 331.18975544;//euros
+    const bsToUsd = 285.4024;//precios de las divisas (dolar)
+    const bsToEur = 334,40028403;//euros
     const copToUsd = 3874.71;// dolar (peso colombiano)     
   
   const euroCop = (bsToEur / bsToUsd) * copToUsd;//calcular euro en base al precio del dolar para pesos 
