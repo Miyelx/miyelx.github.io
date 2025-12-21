@@ -1,6 +1,7 @@
 {
-  "id":"MIdolar app",
+  "id":"v1.0",
   "name": "Midolar",
+  "description": "Aplicación para convertir monedas(Bs,$,€ y COL$)",
   "short_name": "Midolar",
   "categories": ["finance", "tools", "productivity"],
   "lang": "es-VE",
@@ -21,6 +22,7 @@
   "display": "standalone",
   "background_color": "#FFFFFF",
   "theme_color": "#000000",
-  "description": "Aplicación Midolar para convertir monedas",
-  "orientation": "any"
+  "orientation": "any",
+  "dir":"ltr",
+  "display_override":["standalone","fullscreen"]
 }
