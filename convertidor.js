@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //precios nuevos
     const bsToUsd = 288.4494;//precios de las divisas (dolar)
     const bsToEur = 339.251180832;//euros
-    const copToUsd = 3817.93;// dolar (peso colombiano)     
+    const copToUsd = 3792.59;// dolar (peso colombiano)     
   
   const euroCop = (bsToEur / bsToUsd) * copToUsd;//calcular euro en base al precio del dolar para pesos 
   // Venezuela
