@@ -1,8 +1,9 @@
 // service-worker.js
-const CACHE_NAME = "mi-pwa-cache-v3"; // cambia versión al actualizar
+const CACHE_NAME = "mi-pwa-cache-v4"; // cambia versión al actualizar
 const URLS_TO_CACHE = [
   "/index.html",
   "/estilos.css",
+  "/convertidor.js",
   "img/bs.webp",
   "img/col$.webp",
   "img/dolar.webp",
@@ -36,8 +37,8 @@ self.addEventListener("activate", event => {
 self.addEventListener("fetch", event => {
   const request = event.request;
 
-  // Para archivos JS → network-first con fallback a cache
-  if (request.url.endsWith(".js")) {
+  // Para archivos JSON → network-first con fallback a cache
+  if (request.url.endsWith("tasas.json")) {
     event.respondWith(
       fetch(request)
         .then(response => {
