@@ -1,62 +1,59 @@
-const CACHE_NAME = "mi-pwa-cache-v4"; // cambia versión al actualizar
-const URLS_TO_CACHE = [
-  "/index.html",
-  "/estilos.css",
-  "/convertidor.js",
-  "img/bs.webp",
-  "img/col$.webp",
-  "img/dolar.webp",
-  "img/eur.webp",
-  "img/fondo.webp",
-  "img/MIG(copia).png",
-  "img/MIG.png"
-];
+const CACHE_NAME = "mi-pwa-cache-v4.1"; // cambia versión al actualizar
 
 // Instalación: cachear recursos iniciales
-self.addEventListener("install", event => { 
-  self.skipWaiting(); 
-  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(URLS_TO_CACHE))); 
+self.addEventListener("install", event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.addAll([
+        "/index.html",
+        "/estilos.css",
+        "/convertidor.js",
+        "img/bs.webp",
+        "img/col$.webp",
+        "img/dolar.webp",
+        "img/eur.webp",
+        "img/fondo.webp",
+        "img/MIG(copia).png",
+        "img/MIG.png"
+      ]);
+    })
+  );
 });
 
 // Activación: limpiar cachés antiguos
 self.addEventListener("activate", event => {
-  event.waitUntil((async () => { 
-    const keys = await caches.keys(); 
-    await Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))); 
-    await self.clients.claim(); 
-  })()); 
+  event.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key)))
+    )
+  );
 });
 
 // Fetch: estrategia diferenciada
 self.addEventListener("fetch", event => {
   const request = event.request;
-  // Para archivos JSON → Stale‑while‑revalidate	Devuelve rápido lo que haya en caché y actualiza en segundo plano.
+  // Para archivos JSON → network-first
   if (request.url.endsWith("tasas.json")) {
-    event.respondWith((async () => { 
-      const cache = await caches.open(CACHE_NAME); 
-      const cached = await cache.match(request); 
-      const network = fetch(request).then(res => {
-        if (res.ok) {
-          cache.put(request, res.clone()); 
-        } 
-        return res; 
-      }).catch(() => null); 
-      // entrega rápido lo cacheado, actualiza en segundo plano 
-      return cached || (await network); 
-    })());
+    event.respondWith(
+      fetch(request)
+        .then(response => {
+          // Guardar nueva versión en cache
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(request, clone));
+          return response;
+        })
+        .catch(() => {
+          return caches.match(request);// Si no hay red, usar versión cacheada
+        })
+    );
   } else {
-    // Para HTML, CSS, imágenes → cache-only
+    // Para HTML, CSS, imágenes → cache-first 
     event.respondWith(
       caches.match(request).then(response => {
-        return response || fetch(request).then(res => {
-          if (res.ok) {
-            const clone = res.clone();
-            caches.open(CACHE_NAME).then(cache => {
-              cache.put(request, clone);
-             });
-          }
-            return res;
-        }).catch(() => caches.match(request));
+        if (response) {
+          return response;
+        }
       })
     );
- }
+  }
+});
