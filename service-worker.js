@@ -11,17 +11,6 @@ const URLS_TO_CACHE = [
   "img/MIG(copia).png",
   "img/MIG.png"
 ];
-// límite de entradas en caché
-const MAX_ITEMS = 40;
-// función auxiliar para limitar tamaño del caché
-async function limitCacheSize(cacheName, maxItems) {
-  const cache = await caches.open(cacheName);
-  const keys = await cache.keys();
-  if (keys.length > maxItems) {
-    await cache.delete(keys[0]); // elimina el más antiguo
-    await limitCacheSize(cacheName, maxItems); // recursivo hasta cumplir límite
-  }
-}
 
 // Instalación: cachear recursos iniciales
 self.addEventListener("install", event => { 
@@ -49,7 +38,6 @@ self.addEventListener("fetch", event => {
       const network = fetch(request).then(res => {
         if (res.ok) {
           cache.put(request, res.clone()); 
-          limitCacheSize(CACHE_NAME, MAX_ITEMS); 
         } 
         return res; 
       }).catch(() => null); 
@@ -65,7 +53,6 @@ self.addEventListener("fetch", event => {
             const clone = res.clone();
             caches.open(CACHE_NAME).then(cache => {
               cache.put(request, clone);
-              limitCacheSize(CACHE_NAME, MAX_ITEMS);
              });
           }
             return res;
