@@ -50,9 +50,7 @@ self.addEventListener("fetch", event => {
     // Para HTML, CSS, imágenes → cache-first 
     event.respondWith(
       caches.match(request).then(response => {
-        if (response) {
           return response || fetch(request); 
-        }
       })
     );
   }
