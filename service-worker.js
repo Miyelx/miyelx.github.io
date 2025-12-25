@@ -50,7 +50,16 @@ self.addEventListener("fetch", event => {
     // Para HTML, CSS, imágenes → cache-first 
     event.respondWith(
       caches.match(request).then(response => {
-          return response || fetch(request); 
+         if (response) { // Si ya está en caché se usa 
+           return response;
+         } // Si no está, pide a la red y guarda en caché 
+           return fetch(request).then(networkResponse => { 
+             const clone = networkResponse.clone(); 
+             caches.open(CACHE_NAME).then(cache => { 
+               cache.put(request, clone); 
+             }); 
+             return networkResponse;
+          });
       })
     );
   }
