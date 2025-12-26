@@ -11,9 +11,11 @@ document.addEventListener("DOMContentLoaded", function () {
   // Venezuela
   document.getElementById("dolarBs").textContent = bsToUsd.toFixed(2) + " Bs.";
   document.getElementById("euroBs").textContent = bsToEur.toFixed(2) + " Bs.";
+  document.getElementById("fecha-venezuela").textContent = data.fechaBCV;
   // Colombia
   document.getElementById("dolarCop").textContent = copToUsd.toFixed(2) + " Col$.";
   document.getElementById("euroCop").textContent = euroCop.toFixed(2) + " Col$.";
+  document.getElementById("fecha-colombia").textContent = data.fechaBRC;   
 
   // Inputs
   const bsInput = document.querySelectorAll("input")[0];
