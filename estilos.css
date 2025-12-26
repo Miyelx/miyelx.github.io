@@ -71,6 +71,11 @@ span{
   font-size:22px;
 }
 
+.fecha{
+  font-size:20px;
+  font-style:italic;
+}
+
 .precios{
   font-size:20px;
   font-style:italic;
