@@ -71,6 +71,11 @@ span{
   font-size:22px;
 }
 
+.precios{
+  font-size:20px;
+  font-style:italic;
+}
+
  .divisas {
     width: 90%;   /* ocupa todo el 90% del ancho del contenedor padre */
     text-align: center;
@@ -180,6 +185,10 @@ footer {
 
   span{
     font-size:20px;
+  }
+
+  .fecha{
+    font-size:18px;
   }
   
   .divisas {
