@@ -1,4 +1,4 @@
-const CACHE_NAME = "mi-pwa-cache-v4.1"; // cambia versión al actualizar
+const CACHE_NAME = "mi-pwa-cache-v5"; // cambiar versión al actualizar
 
 // Instalación: cachear recursos iniciales
 self.addEventListener("install", event => {
