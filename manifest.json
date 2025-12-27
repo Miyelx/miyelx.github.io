@@ -22,7 +22,7 @@
   "display": "standalone",
   "background_color": "#FFFFFF",
   "theme_color": "#000000",
-  "orientation": "natural",
+  "orientation": "portrait",
   "dir":"ltr",
   "display_override":["standalone","fullscreen"]
 }
