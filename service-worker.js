@@ -1,4 +1,4 @@
-const CACHE_NAME = "cache-v7.2"; // versión del cache
+const CACHE_NAME = "cache-v7.3"; // versión del cache
 
 // Instalación: cachear recursos
 self.addEventListener("install", event => {
