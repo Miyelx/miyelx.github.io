@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!isValidNumber(raw)) return;
     const eur = parseFloat(raw);
     bsInput.value = (eur*bsToEur).toFixed(2);
-    usdInput.value = (eur*(bsToUsd/bsToEur)).toFixed(2);
+    usdInput.value = (eur*(bsToEur/bsToUsd)).toFixed(2);
     copInput.value = (((bsToEur / bsToUsd) * copToUsd)*eur).toFixed(2);
                       
   }
