@@ -73,5 +73,14 @@ document.addEventListener("DOMContentLoaded", function () {
   usdInput.addEventListener("input", convertFromUsd);
   eurInput.addEventListener("input", convertFromEur);
   copInput.addEventListener("input", convertFromCop);
+
+  function limpiar() {//limpiar entradas de números al presionar el botón
+    bsInput.value = "";
+    usdInput.value = ""; 
+    eurInput.value = ""; 
+    copInput.value = ""; 
+   } 
+   
+   document.getElementById("clear").addEventListener("click", limpiar);
   });
 });
