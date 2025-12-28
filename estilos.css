@@ -148,6 +148,24 @@ input {
   gap: 5px;
 }
 
+button{
+    all: unset; /* elimina los estilos por defecto */
+    cursor: pointer;/* vuelve a poner el cursor de mano */
+    background-color:rgb(230,0,0);
+    border-radius:20px;
+    pADDING:8PX;
+    color:white;
+    box-shadow: 0px 6px 0px rgba(190,0,0,1);
+    margin-bottom:10px;
+    font-weight:bold;
+    width:40%;
+}
+
+button:active{   
+    transform: translateY(6px);
+    box-shadow: 0px 0px 0px rgba(190,0,0,1);
+}
+
 footer {
   border-radius: 30px;
   margin: 25px 110px 0px 110px;
