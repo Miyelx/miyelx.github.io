@@ -1,6 +1,6 @@
-const CACHE_NAME = "cache-pwa-v5.4"; // cambiar versión al actualizar
+const CACHE_NAME = "cache-pwa-v6"; // versión del cache
 
-// Instalación: cachear recursos iniciales
+// Instalación: cachear recursos
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
@@ -29,7 +29,7 @@ self.addEventListener("activate", event => {
   );
 });
 
-// Fetch: estrategia diferenciada
+// Fetch
 self.addEventListener("fetch", event => {
   const request = event.request;
   // Para archivos JSON → network-first
