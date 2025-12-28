@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   font-family: "Nunito";
-  font-size: 18px;
 }
 
 body {
@@ -15,8 +14,6 @@ body {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  display: grid; /* Usa un modelo de caja de diseño en rejilla */
-  grid-template-rows: auto 1fr auto; /* Tres filas: encabezado, contenido flexible, pie */
 }
 
 .info,.caja,.divisas,.precios,.contender,h2,footer {/*estilos para que caida en cascada al iniciar o recargar*/
@@ -44,7 +41,7 @@ footer:nth-child(3) { animation-delay: 1.8s;}
   }
 }
 
-/* Layout principal: precios a la izquierda, convertidor a la derecha */
+/* precios a la izquierda, convertidor a la derecha */
 .caja {
   display: flex;
   justify-content: space-between;
@@ -67,17 +64,13 @@ footer:nth-child(3) { animation-delay: 1.8s;}
   margin-bottom:20px;
 }
 
-span{
+span, .precios{
   font-size:22px;
 }
 
 .fecha{
   font-size:17px;
   font-style:italic;
-}
-
-.precios{
-  font-size:22px;
 }
 
  .divisas {
