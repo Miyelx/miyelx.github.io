@@ -1,4 +1,4 @@
-const CACHE_NAME = "cache-pwa-v6"; // versión del cache
+const CACHE_NAME = "cache-v6"; // versión del cache
 
 // Instalación: cachear recursos
 self.addEventListener("install", event => {
