@@ -20,6 +20,16 @@ self.addEventListener("install", event => {
   );
 });
 
+function limitarCache(nombreCache, maxItems) {//limita el número de caches
+  caches.open(nombreCache).then(cache => {
+    cache.keys().then(keys => {
+      if (keys.length > maxItems) {
+        cache.delete(keys[0]).then(() => limitarCache(nombreCache, maxItems));
+      }
+    });
+  });
+}
+
 // Activación: limpiar cachés antiguos
 self.addEventListener("activate", event => {
   event.waitUntil(
@@ -57,6 +67,7 @@ self.addEventListener("fetch", event => {
              const clone = networkResponse.clone(); 
              caches.open(CACHE_NAME).then(cache => { 
                cache.put(request, clone); 
+               limitarCache(CACHE_NAME, 50); //máximo 50 recursos de cache
              }); 
              return networkResponse;
           });
