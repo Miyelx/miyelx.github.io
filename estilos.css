@@ -16,10 +16,10 @@ body {
   flex-direction: column;
 }
 
-.info,.caja,.divisas,.precios,.contender,h2,footer {/*estilos para que caida en cascada al iniciar o recargar*/
+.info,.caja,.divisas,.precios,.contender,h2,div,footer {/*estilos para que caida en cascada al iniciar o recargar*/
   opacity: 0;
-  transform: translateY(-55px);
-  animation: drop 0.8s ease forwards;
+  transform: translateY(-85px);
+  animation: drop 0.9s ease forwards;
 }
 
 .info:nth-child(1) { animation-delay: 0.2s; }
@@ -32,7 +32,8 @@ h2:nth-child(1) { animation-delay: 1.0s; }
 h2:nth-child(2) { animation-delay: 1.2s; }
 h2:nth-child(3) { animation-delay: 1.4s; }
 h2:nth-child(4) { animation-delay: 1.6s; }
-footer:nth-child(3) { animation-delay: 1.8s;}
+div:nth-child(5) { animation-delay: 1.8s;}
+footer:nth-child(3) { animation-delay: 2.0s;}
 
 @keyframes drop {
   to {
@@ -128,6 +129,7 @@ input {
   width: 440px;
   height: 50px;
   padding: 5px 20px;
+  border:none;
 }
 
 .di {
