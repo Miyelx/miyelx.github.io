@@ -50,22 +50,22 @@ footer:nth-child(3) { animation-delay: 2.0s;}
   margin: 25px 160px 25px 160px;
   background-color: rgba(255,255,255,0.6);
   border-radius:60px;
-  gap: 20px;
+  gap:5px;
   box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
 }
 
 .precios {
   font-size: 22px;
-  background: #08599AFF; /* color rojo de fondo */
+  background: #08599AFF; /* color azul de fondo */
   color: white;
-  padding: 16px;
+  padding: 14px;
   border-radius: 50px;
-  box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
+  box-shadow: 0px 6px 0px #064272FF;
   text-align: center;
   margin-bottom:20px;
 }
 
-span, .precios{
+span{
   font-size:22px;
 }
 
@@ -77,12 +77,10 @@ span, .precios{
  .divisas {
     width: 90%;   /* ocupa todo el 90% del ancho del contenedor padre */
     text-align: center;
-    margin: 5px 0px 0px 10px;
-    flex: 1;
+    margin: 15px 0px 0px 15px;
   }
 /* Bloque del convertidor */
 .contenedor {
-  flex: 1;
   padding: 20px;
   border-radius: 60px;
   text-align: center;
@@ -96,7 +94,7 @@ h2 {
   border-radius: 60px;
   margin-bottom: 20px;
   padding: 10px;
-  box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
+  box-shadow: 0px 6px 0px #064272FF ;
 }
 
 .info{
@@ -105,12 +103,15 @@ h2 {
   border-radius:0px 0px 60px 60px;
 }
 
+.header{
+  padding:2px;
+  background-color:white;
+}
+
 img{
   justify-content:center;
   align-items: center;
-  background-color:white;
   border-radius:50px;
-  padding:3px;
 }
 
 p {
@@ -136,17 +137,17 @@ input {
   display: flex;
   justify-content: start;
   align-items: center;
-  gap: 5px;
+  gap:6px;
 }
 
 button{
     all: unset; /* elimina los estilos por defecto */
     cursor: pointer;/* vuelve a poner el cursor de mano */
-    background-color:rgb(230,0,0);
+    background-color:#F25750FF;
     border-radius:20px;
-    pADDING:8PX;
+    padding:8px;
     color:white;
-    box-shadow: 0px 6px 0px rgba(190,0,0,1);
+    box-shadow: 0px 6px 0px #BF453FFF;
     margin-bottom:10px;
     font-weight:bold;
     width:40%;
@@ -154,7 +155,7 @@ button{
 
 button:active{   
     transform: translateY(6px);
-    box-shadow: 0px 0px 0px rgba(190,0,0,1);
+    box-shadow: 0px 0px 0px #BF453FFF;
 }
 
 footer {
@@ -193,7 +194,7 @@ footer {
   }
   
   .precios{
-    margin-bottom:0px;
+    margin-bottom:12px;
   }
 
   span{
