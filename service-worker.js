@@ -1,4 +1,4 @@
-const CACHE_NAME = "cache-v7.5"; // versión del cache
+const CACHE_NAME = "cache-v7.6"; // versión del cache
 
 // Instalación: cachear recursos
 self.addEventListener("install", event => {
@@ -67,7 +67,7 @@ self.addEventListener("fetch", event => {
              const clone = networkResponse.clone(); 
              caches.open(CACHE_NAME).then(cache => { 
                cache.put(request, clone); 
-               limitarCache(CACHE_NAME, 50); //máximo 50 recursos de cache
+               limitarCache(CACHE_NAME, 45); //máximo 45 recursos de cache
              }); 
              return networkResponse;
           });
