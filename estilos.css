@@ -94,7 +94,11 @@ h2 {
   border-radius: 60px;
   margin-bottom: 20px;
   padding: 10px;
-  box-shadow: 0px 6px 0px #064272FF ;
+  box-shadow: 0px 6px 0px #064272FF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:6px;
 }
 
 .info{
@@ -131,13 +135,6 @@ input {
   height: 50px;
   padding: 5px 20px;
   border:none;
-}
-
-.di {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  gap:6px;
 }
 
 button{
