@@ -63,13 +63,13 @@ self.addEventListener("fetch", event => {
          if (response) { // Si ya está en caché se usa 
            return response;
          } // Si no está, pide a la red y guarda en caché 
-           return fetch(request).then(networkResponse => { 
-             const clone = networkResponse.clone(); 
+           return fetch(request).then(Response => { 
+             const clone = Response.clone(); 
              caches.open(CACHE_NAME).then(cache => { 
                cache.put(request, clone); 
                limitarCache(CACHE_NAME, 45); //máximo 45 recursos de cache
              }); 
-             return networkResponse;
+             return Response;
           });
       })
     );
