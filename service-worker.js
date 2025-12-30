@@ -31,7 +31,7 @@ self.addEventListener("fetch", e => {
           res || fetch(req).then(red => {//devuelve cache si hay(res) si no busca en la red.
             caches.open(CACHE_NAME).then(c => {
               c.put(req, red.clone());
-              limitarCache(CACHE_NAME, 45);
+              limitarCache(CACHE_NAME, 40);
             });
             return red;
           })
