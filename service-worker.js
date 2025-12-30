@@ -1,4 +1,4 @@
-const CACHE_NAME = "cache-v7.8";//version de cache
+const CACHE_NAME = "cache-v7.9";//version de cache
 
 self.addEventListener("install", e => {
   self.skipWaiting();//pasa directo al evento activate
