@@ -1,7 +1,6 @@
 const CACHE_NAME = "cache-v7.9";//version de cache
 
 self.addEventListener("install", e => {
-  self.skipWaiting();//pasa directo al evento activate
   e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll([
   "/index.html","/estilos.css","/convertidor.js","img/bs.webp","img/col.webp",
   "img/dolar.webp","img/eur.webp","img/fondo.webp","img/MIG(copia).png","img/MIG.png"])))
@@ -16,7 +15,7 @@ const limitarCache = (nombre, max) =>
 self.addEventListener("activate", e => e.waitUntil(//ejecuta el cache actual
     caches.keys().then(keys =>
       Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
-    ).then(() => self.clients.claim());//toma el control de la pagina sin recargar manualmente
+    )
   )
 );
 
