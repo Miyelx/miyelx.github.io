@@ -1,77 +1,41 @@
-const CACHE_NAME = "cache-v7.7"; // versión del cache
+const CACHE_NAME = "cache-v7.8";//version de cache
 
-// Instalación: cachear recursos
-self.addEventListener("install", event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll([
-        "/index.html",
-        "/estilos.css",
-        "/convertidor.js",
-        "img/bs.webp",
-        "img/col$.webp",
-        "img/dolar.webp",
-        "img/eur.webp",
-        "img/fondo.webp",
-        "img/MIG(copia).png",
-        "img/MIG.png"
-      ]);
+self.addEventListener("install", e => {
+  self.skipWaiting();//pasa directo al evento activate
+  e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll([
+  "/index.html","/estilos.css","/convertidor.js","img/bs.webp","img/col.webp",
+  "img/dolar.webp","img/eur.webp","img/fondo.webp","img/MIG(copia).png","img/MIG.png"])))
+});
+  
+const limitarCache = (nombre, max) =>
+  caches.open(nombre).then(c => c.keys().then(keys => {
+      if (keys.length > max) { c.delete(keys[0]).then(() => limitarCache(nombre, max)); }
     })
   );
-});
 
-function limitarCache(nombreCache, maxItems) {//limita el número de caches
-  caches.open(nombreCache).then(cache => {
-    cache.keys().then(keys => {
-      if (keys.length > maxItems) {
-        cache.delete(keys[0]).then(() => limitarCache(nombreCache, maxItems));
-      }
-    });
-  });
-}
-
-// Activación: limpiar cachés antiguos
-self.addEventListener("activate", event => {
-  event.waitUntil(
+self.addEventListener("activate", e => e.waitUntil(//ejecuta el cache actual
     caches.keys().then(keys =>
-      Promise.all(keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key)))
-    )
-  );
-});
+      Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
+    ).then(() => self.clients.claim());//toma el control de la pagina sin recargar manualmente
+  )
+);
 
-// Fetch
-self.addEventListener("fetch", event => {
-  const request = event.request;
-  // Para archivos JSON → network-first
-  if (request.url.endsWith("tasas.json")) {
-    event.respondWith(
-      fetch(request)
-        .then(response => {
-          // Guardar nueva versión en cache
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(request, clone));
-          return response;
-        })
-        .catch(() => {
-          return caches.match(request);// Si no hay red, usar versión cacheada
-        })
-    );
-  } else {
-    // Para HTML, CSS, imágenes → cache-first 
-    event.respondWith(
-      caches.match(request).then(response => {
-         if (response) { // Si ya está en caché se usa 
-           return response;
-         } // Si no está, pide a la red y guarda en caché 
-           return fetch(request).then(Response => { 
-             const clone = Response.clone(); 
-             caches.open(CACHE_NAME).then(cache => { 
-               cache.put(request, clone); 
-               limitarCache(CACHE_NAME, 45); //máximo 45 recursos de cache
-             }); 
-             return Response;
-          });
-      })
-    );
-  }
+self.addEventListener("fetch", e => {
+  const req = e.request;
+  e.respondWith(
+    req.url.endsWith("tasas.json")
+      ? fetch(req).then(res => {
+          caches.open(CACHE_NAME).then(c => c.put(req, res.clone()));
+          return res;
+        }).catch(() => caches.match(req))
+      : caches.match(req).then(res =>
+          res || fetch(req).then(red => {//devuelve cache si hay(res) si no busca en la red.
+            caches.open(CACHE_NAME).then(c => {
+              c.put(req, red.clone());
+              limitarCache(CACHE_NAME, 45);
+            });
+            return red;
+          })
+        )
+  );
 });
