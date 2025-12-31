@@ -64,7 +64,7 @@ self.addEventListener("fetch", event => {
         return fetch(request).then(res => {
           const clone = res.clone();
           caches.open(CACHE_NAME).then(cache => cache.put(request, clone));
-          limitarCache(CACHE_NAME, 40);
+          limitarCache(CACHE_NAME, 46);
         });
           return res;
       })
