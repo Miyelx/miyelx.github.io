@@ -7,12 +7,12 @@
   "lang": "es-VE",
   "icons": [
     {
-      "src": "img/MIG.png",
+      "src": "img/MIG_inicio.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "img/MIG.png",
+      "src": "img/MIG_inicio.png",
       "sizes": "512x512",
       "type": "image/png"
     }
