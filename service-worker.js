@@ -7,6 +7,7 @@ self.addEventListener("install", event => {
        "/index.html",
        "/estilos.css",
        "/convertidor.js",
+       "/sw.js",
        "img/bs.png",
        "img/col.png",
        "img/dolar.png",
@@ -24,7 +25,6 @@ const limitarCache = (nombre, max) =>
     })
   );
 
-//Activación.
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(keys =>
