@@ -1,4 +1,4 @@
-const CACHE_NAME = "cache-v7.19"; // cambia versión al actualizar
+const CACHE_NAME = "cache-v7.2"; // cambia versión al actualizar
 
 // Instalación: cachear recursos iniciales
 self.addEventListener("install", event => {
@@ -8,12 +8,11 @@ self.addEventListener("install", event => {
        "/index.html",
        "/estilos.css",
        "/convertidor.js",
-       "img/bs.webp",
-       "img/col.webp",
-       "img/dolar.webp",
-       "img/eur.webp",
+       "img/bs.png",
+       "img/col.png",
+       "img/dolar.png",
+       "img/eur.png",
        "img/fondo.webp",
-       "img/MIG(copia).png",
        "img/MIG.png"
      ]);
     })
