@@ -24,7 +24,7 @@ const limitarCache = (nombre, max) =>
     })
   );
 
-// Activación: limpiar cachés antiguos
+// Activación:limpiar cache antiguo
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(keys =>
@@ -35,7 +35,7 @@ self.addEventListener("activate", event => {
 
 self.addEventListener("fetch", event => {
   const request = event.request;
-  // Para archivos JSON buscar primero en red
+  //.json se buscan en red
   if (request.url.endsWith("tasas.json")) {
     event.respondWith(
       fetch(request)
@@ -51,7 +51,7 @@ self.addEventListener("fetch", event => {
         })
     );
   } else {
-    // Para demás archivos usar primero caché
+    // Para el resto usar primero caché
     event.respondWith(
       caches.match(request).then(response => {
         if (response) {
