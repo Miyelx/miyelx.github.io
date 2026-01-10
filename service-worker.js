@@ -1,5 +1,5 @@
-const CACHE_NAME = "cache-v7.24"; // cambia versión al actualizar
-// Instalación: cachear recursos iniciales
+const CACHE_NAME = "cache-v7.24"; //version del cache
+// Instalación de recursos
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
@@ -13,8 +13,7 @@ self.addEventListener("install", event => {
        "img/eur.png",
        "img/fondo.webp",
        "img/MIG.png",
-       "img/MIG_inicio.png"
-     ]);
+       "img/MIG_inicio.png"]);
     })
   );
 });
@@ -36,7 +35,7 @@ self.addEventListener("activate", event => {
 
 self.addEventListener("fetch", event => {
   const request = event.request;
-  // Para archivos JSON → network-first con fallback a cache
+  // Para archivos JSON buscar primero en red
   if (request.url.endsWith("tasas.json")) {
     event.respondWith(
       fetch(request)
@@ -47,12 +46,12 @@ self.addEventListener("fetch", event => {
           return response;
         })
         .catch(() => {
-          // Si no hay red, usar versión cacheada
+          // Si no hay red, usar cache antiguo
           return caches.match(request);
         })
     );
   } else {
-    // Para HTML, CSS, imágenes → cache-first con actualización
+    // Para demás archivos usar primero caché
     event.respondWith(
       caches.match(request).then(response => {
         if (response) {
