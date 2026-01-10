@@ -1,5 +1,4 @@
 const CACHE_NAME = "cache-v7.24"; // cambia versión al actualizar
-
 // Instalación: cachear recursos iniciales
 self.addEventListener("install", event => {
   event.waitUntil(
@@ -35,10 +34,8 @@ self.addEventListener("activate", event => {
   );
 });
 
-// Fetch: estrategia diferenciada
 self.addEventListener("fetch", event => {
   const request = event.request;
-
   // Para archivos JSON → network-first con fallback a cache
   if (request.url.endsWith("tasas.json")) {
     event.respondWith(
@@ -55,7 +52,7 @@ self.addEventListener("fetch", event => {
         })
     );
   } else {
-    // Para HTML, CSS, imágenes → cache-first con actualización dinámica
+    // Para HTML, CSS, imágenes → cache-first con actualización
     event.respondWith(
       caches.match(request).then(response => {
         if (response) {
