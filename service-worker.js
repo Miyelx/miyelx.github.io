@@ -1,5 +1,5 @@
-const CACHE_NAME = "cache-v7.24"; //version del cache
-// Instalación de recursos
+const CACHE_NAME = "cache-v7.24"; //version cache
+//Instalación.
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
@@ -24,7 +24,7 @@ const limitarCache = (nombre, max) =>
     })
   );
 
-// Activación:limpiar cache antiguo
+//Activación.
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(keys =>
@@ -35,7 +35,7 @@ self.addEventListener("activate", event => {
 
 self.addEventListener("fetch", event => {
   const request = event.request;
-  //.json se buscan en red
+  //.json se busca en red
   if (request.url.endsWith("tasas.json")) {
     event.respondWith(
       fetch(request)
@@ -46,12 +46,12 @@ self.addEventListener("fetch", event => {
           return response;
         })
         .catch(() => {
-          // Si no hay red, usar cache antiguo
+          // Si no hay, usar cache antiguo
           return caches.match(request);
         })
     );
   } else {
-    // Para el resto usar primero caché
+    //Buscar en cache el resto
     event.respondWith(
       caches.match(request).then(response => {
         if (response) {
