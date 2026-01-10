@@ -1,5 +1,5 @@
-const CACHE_NAME = "cache-v7.24"; //version cache
-//Instalación.
+const CACHE_NAME = "cache-v7.24";
+
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
@@ -35,23 +35,19 @@ self.addEventListener("activate", event => {
 
 self.addEventListener("fetch", event => {
   const request = event.request;
-  //.json se busca en red
   if (request.url.endsWith("tasas.json")) {
     event.respondWith(
       fetch(request)
         .then(response => {
-          // Guardar nueva versión en cache
           const clone = response.clone();
           caches.open(CACHE_NAME).then(cache => cache.put(request, clone));
           return response;
         })
         .catch(() => {
-          // Si no hay, usar cache antiguo
           return caches.match(request);
         })
     );
   } else {
-    //Buscar en cache el resto
     event.respondWith(
       caches.match(request).then(response => {
         if (response) {
