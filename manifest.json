@@ -1,7 +1,7 @@
 {
   "version":"1.12.2025",
   "name": "Midolar - Conversor de monedas",
-  "description": "Aplicación para convertir monedas(Bs,$,€ y COL$)",
+  "description": "App web para convertir monedas(Bs,$,€ y COL$)",
   "short_name": "Midolar",
   "categories": ["finance", "tools", "productivity"],
   "lang": "es-VE",
@@ -23,6 +23,5 @@
   "orientation":"portrait",
   "background_color": "#3F84FEFF",
   "theme_color": "#000000",
-  "dir":"ltr",
   "display_override":["standalone","fullscreen"]
 }
