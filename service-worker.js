@@ -36,26 +36,20 @@ self.addEventListener("activate", event => {
 self.addEventListener("fetch", event => {
   const request = event.request;
   if (request.url.endsWith("tasas.json")) {
-    event.respondWith(
-      fetch(request)
-        .then(response => {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(request, clone));
+    event.respondWith(fetch(request).then(response => {
+          caches.open(CACHE_NAME).then(cache => cache.put(request,response.clone()));
           return response;
-        })
-        .catch(() => {
+        }).catch(() => {
           return caches.match(request);
         })
     );
   } else {
-    event.respondWith(
-      caches.match(request).then(response => {
+    event.respondWith(caches.match(request).then(response => {
         if (response) {
           return response;
         }
         return fetch(request).then(res => {
-          const clone = res.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(request, clone));
+          caches.open(CACHE_NAME).then(cache => cache.put(request, res.clone()));
           limitarCache(CACHE_NAME, 45);
         });
           return res;
