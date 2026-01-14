@@ -1,19 +1,12 @@
-const CACHE_NAME = "cache-v7.24";
+const CACHE_NAME = "cache-v7.25";
 
 self.addEventListener("install", event => { 
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
       return cache.addAll([
-       "/index.html",
-       "/estilos.css",
-       "/convertidor.js",
-       "/sw.js",
-       "img/bs.png",
-       "img/col.png",
-       "img/dolar.png",
-       "img/eur.png",
-       "img/fondo.webp",
-       "img/MIG.png",
+       "/index.html","/estilos.css","/convertidor.js",
+       "/sw.js","img/bs.png","img/col.png","img/dolar.png",
+       "img/eur.png","img/fondo.webp","img/MIG.png",
        "img/MIG_inicio.png"]);
     })
   );
@@ -21,7 +14,7 @@ self.addEventListener("install", event => {
 
 const limitarCache = (nombre, max) =>
   caches.open(nombre).then(c => c.keys().then(keys => {
-      if (keys.length > max) { c.delete(keys[0]).then(() => limitarCache(nombre, max)); }
+      keys.length > max ? c.delete(keys[0]).then(() => limitarCache(nombre, max)) : null;
     })
   );
 
@@ -33,7 +26,7 @@ self.addEventListener("activate", event => {
 
 self.addEventListener("fetch", event => {
   const request = event.request;
-  if (request.url.endsWith("tasas.json")) {
+  request.url.endsWith("tasas.json") ?
     event.respondWith(fetch(request).then(response => {
           caches.open(CACHE_NAME).then(cache => cache.put(request,response.clone()));
           return response;
@@ -41,17 +34,15 @@ self.addEventListener("fetch", event => {
           return caches.match(request);
         })
     );
-  } else {
+  :
     event.respondWith(caches.match(request).then(response => {
-        if (response) {
-          return response;
+        if (response) { 
+          return response; 
         }
         return fetch(request).then(res => {
           caches.open(CACHE_NAME).then(cache => cache.put(request, res.clone()));
-          limitarCache(CACHE_NAME, 45);
-        });
+          limitarCache(CACHE_NAME, 45); });
           return res;
       })
     );
-  }
 });
