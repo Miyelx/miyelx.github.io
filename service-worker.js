@@ -14,7 +14,7 @@ self.addEventListener("install", event => {
 
 const limitarCache = (nombre, max) =>
   caches.open(nombre).then(c => c.keys().then(keys => {
-      keys.length > max ? c.delete(keys[0]).then(() => limitarCache(nombre, max)) : null;
+      if (keys.length > max) { c.delete(keys[0]).then(() => limitarCache(nombre, max)); }
     })
   );
 
@@ -26,7 +26,7 @@ self.addEventListener("activate", event => {
 
 self.addEventListener("fetch", event => {
   const request = event.request;
-  request.url.endsWith("tasas.json") ?
+  if (request.url.endsWith("tasas.json")) {
     event.respondWith(fetch(request).then(response => {
           caches.open(CACHE_NAME).then(cache => cache.put(request,response.clone()));
           return response;
@@ -34,15 +34,16 @@ self.addEventListener("fetch", event => {
           return caches.match(request);
         })
     );
-  :
+  }else{
     event.respondWith(caches.match(request).then(response => {
         if (response) { 
           return response; 
         }
         return fetch(request).then(res => {
           caches.open(CACHE_NAME).then(cache => cache.put(request, res.clone()));
-          limitarCache(CACHE_NAME, 45); });
+          limitarCache(CACHE_NAME, 46); });
           return res;
       })
     );
+  }
 });
