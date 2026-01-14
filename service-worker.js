@@ -1,4 +1,4 @@
-const CACHE_NAME = "cache-v7.3";
+const CACHE_NAME = "cache-v7.31";
 
 self.addEventListener("install", event => { 
   event.waitUntil(
@@ -26,21 +26,23 @@ self.addEventListener("activate", event => {
 
 self.addEventListener("fetch", event => {
   const request = event.request;
-  if (request.url.endsWith("tasas.json")) {
+  if (request.url.endsWith("tasas.json")) { 
     event.respondWith(fetch(request).then(response => {
-          caches.open(CACHE_NAME).then(cache => cache.put(request,response.clone()));
-          return response;
-        }).catch(() => {
-          return caches.match(request);
-        })
+        const response = response.clone();
+        caches.open(CACHE_NAME).then(cache => cache.put(request,response));
+        return response;
+      }).catch(() => {
+        return caches.match(request);
+      })
     );
-  }else{
-    event.respondWith(caches.match(request).then(response => {
+   }else{
+     event.respondWith(caches.match(request).then(response => {
         if (response) { 
           return response; 
         }
         return fetch(request).then(res => {
-          caches.open(CACHE_NAME).then(cache => cache.put(request,res.clone()));
+          const response = res.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(request,res));
           limiteCache(CACHE_NAME,46); });
           return res;
       })
