@@ -1,4 +1,4 @@
-const CACHE_NAME = "cache-v7.25";
+const CACHE_NAME = "cache-v7.3";
 
 self.addEventListener("install", event => { 
   event.waitUntil(
@@ -12,9 +12,9 @@ self.addEventListener("install", event => {
   );
 });
 
-const limitarCache = (nombre, max) =>
+const limiteCache = (nombre, max) =>
   caches.open(nombre).then(c => c.keys().then(keys => {
-      if (keys.length > max) { c.delete(keys[0]).then(() => limitarCache(nombre, max)); }
+      if (keys.length > max) { c.delete(keys[0]).then(() => limiteCache(nombre, max)); }
     })
   );
 
@@ -40,8 +40,8 @@ self.addEventListener("fetch", event => {
           return response; 
         }
         return fetch(request).then(res => {
-          caches.open(CACHE_NAME).then(cache => cache.put(request, res.clone()));
-          limitarCache(CACHE_NAME, 46); });
+          caches.open(CACHE_NAME).then(cache => cache.put(request,res.clone()));
+          limiteCache(CACHE_NAME,46); });
           return res;
       })
     );
