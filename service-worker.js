@@ -8,6 +8,8 @@ self.addEventListener("install", event => {
        "/sw.js","img/bs.png","img/col.png","img/dolar.png",
        "img/eur.png","img/fondo.webp","img/MIG.png",
        "img/MIG_inicio.png"]);
+    }).then(() => {
+        return self.skipWaiting();
     })
   );
 });
@@ -22,6 +24,7 @@ self.addEventListener("activate", event => {
   event.waitUntil(caches.keys().then(keys =>
       Promise.all(keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))))
   );
+  return self.clients.claim();
 });
 
 self.addEventListener("fetch", event => {
