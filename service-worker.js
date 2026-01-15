@@ -1,11 +1,11 @@
-const CACHE_NAME = "cache-v7.32";
+const CACHE_NAME = "cache-v7.33";
 
 self.addEventListener("install", event => { 
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
       return cache.addAll([
        "/index.html","/estilos.css","/convertidor.js",
-       "/sw.js","img/bs.png","img/col.png","img/dolar.png",
+       "/sw.js","tasas.json","img/bs.png","img/col.png","img/dolar.png",
        "img/eur.png","img/fondo.webp","img/MIG.png",
        "img/MIG_inicio.png"]);
     }) );
@@ -42,5 +42,4 @@ self.addEventListener("fetch", event => {
           limitarCache(CACHE_NAME, 46); });
           return res;
     }) );
-  }
-});
+  } });
