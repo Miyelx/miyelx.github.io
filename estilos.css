@@ -153,6 +153,7 @@ button{
 button:active{   
     transform: translateY(6px);
     box-shadow: 0px 0px 0px #BF453FFF;
+    user-select: none; /* Versión estándar */
 }
 
 footer {
