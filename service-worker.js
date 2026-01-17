@@ -29,7 +29,7 @@ self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(keys => 
       Promise.all(keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key)))
-    ).then(() => self.clients.claim()) // Toma control de las pestañas abiertas inmediatamente
+    ).then(() => self.clients.claim()) // Toma control de las pestañas abiertas 
   );
 });
 
@@ -57,14 +57,13 @@ self.addEventListener("fetch", event => {
         .catch(() => caches.match(request)) // Si falla red, dar cahce
     );
   } else {
-    // Estrategia para Assets
     event.respondWith(
       caches.match(request).then(response => {
         return response || fetch(request).then(netResponse => {
           return caches.open(CACHE_NAME).then(cache => {
             cache.put(request, netResponse.clone());
             limitarCache(CACHE_NAME, 50);
-            return netResponse; // Importante: retornar la respuesta
+            return netResponse;
           });
         });
       }).catch(() => {
