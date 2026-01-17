@@ -14,7 +14,7 @@ const ASSETS = [
   "img/MIG_inicio.png"
 ];
 
-// 1. Instalación: Cachear recursos
+// 1. Instalación de recursos
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
@@ -33,7 +33,6 @@ self.addEventListener("activate", event => {
   );
 });
 
-// Función de utilidad para limitar el tamaño
 const limitarCache = (nombre, max) => {
   caches.open(nombre).then(cache => {
     cache.keys().then(keys => {
@@ -55,10 +54,10 @@ self.addEventListener("fetch", event => {
           caches.open(CACHE_NAME).then(cache => cache.put(request, resClone));
           return response;
         })
-        .catch(() => caches.match(request)) // Si falla red, dar lo que tengamos
+        .catch(() => caches.match(request)) // Si falla red, dar cahce
     );
   } else {
-    // Estrategia para Assets: Cache First (Velocidad)
+    // Estrategia para Assets
     event.respondWith(
       caches.match(request).then(response => {
         return response || fetch(request).then(netResponse => {
@@ -69,7 +68,6 @@ self.addEventListener("fetch", event => {
           });
         });
       }).catch(() => {
-        // Opcional: Si es una página HTML, podrías devolver un offline.html aquí
       })
     );
   }
