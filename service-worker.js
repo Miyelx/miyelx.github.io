@@ -1,45 +1,76 @@
-const CACHE_NAME = "cache-v7.33";
+const CACHE_NAME = "cache-v7.34";
+const ASSETS = [
+  "./", 
+  "index.html",
+  "estilos.css",
+  "convertidor.js",
+  "tasas.json",
+  "img/bs.png",
+  "img/col.png",
+  "img/dolar.png",
+  "img/eur.png",
+  "img/fondo.webp",
+  "img/MIG.png",
+  "img/MIG_inicio.png"
+];
 
-self.addEventListener("install", event => { 
+// 1. Instalación: Cachear recursos
+self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll([
-       "/index.html","/estilos.css","/convertidor.js",
-       "/sw.js","tasas.json","img/bs.png","img/col.png","img/dolar.png",
-       "img/eur.png","img/fondo.webp","img/MIG.png",
-       "img/MIG_inicio.png"]);
-    }) );
-});
-
-const limitarCache = (nombre, max) =>
-  caches.open(nombre).then(c => c.keys().then(keys => {
-      if (keys.length > max) { c.delete(keys[0]).then(() => limitarCache(nombre, max)); }
-  }) );
-
-self.addEventListener("activate", event => {
-  event.waitUntil(caches.keys().then(keys =>
-      Promise.all(keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))))
+      console.log("Caché abierto correctamente");
+      return cache.addAll(ASSETS);
+    }).then(() => self.skipWaiting()) // Fuerza al SW nuevo a activarse
   );
 });
 
+// 2. Activación: Limpieza de versiones viejas
+self.addEventListener("activate", event => {
+  event.waitUntil(
+    caches.keys().then(keys => 
+      Promise.all(keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key)))
+    ).then(() => self.clients.claim()) // Toma control de las pestañas abiertas inmediatamente
+  );
+});
+
+// Función de utilidad para limitar el tamaño
+const limitarCache = (nombre, max) => {
+  caches.open(nombre).then(cache => {
+    cache.keys().then(keys => {
+      if (keys.length > max) {
+        cache.delete(keys[0]).then(() => limitarCache(nombre, max));
+      }
+    });
+  });
+};
+
+// 3. Estrategia de Fetch Diferenciada
 self.addEventListener("fetch", event => {
-  const request = event.request;
-  if (request.url.endsWith("tasas.json")) {
-    event.respondWith(fetch(request).then(response => {
-          caches.open(CACHE_NAME).then(cache => cache.put(request,response.clone()));
+  const { request } = event;
+  if (request.url.includes("tasas.json")) {
+    event.respondWith(
+      fetch(request)
+        .then(response => {
+          const resClone = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(request, resClone));
           return response;
-        }).catch(() => {
-          return caches.match(request);
         })
+        .catch(() => caches.match(request)) // Si falla red, dar lo que tengamos
     );
-  }else{
-    event.respondWith(caches.match(request).then(response => {
-        if (response) { 
-          return response; 
-        }
-        return fetch(request).then(res => {
-          caches.open(CACHE_NAME).then(cache => cache.put(request, res.clone()));
-          limitarCache(CACHE_NAME, 46); });
-          return res;
-    }) );
-  } });
+  } else {
+    // Estrategia para Assets: Cache First (Velocidad)
+    event.respondWith(
+      caches.match(request).then(response => {
+        return response || fetch(request).then(netResponse => {
+          return caches.open(CACHE_NAME).then(cache => {
+            cache.put(request, netResponse.clone());
+            limitarCache(CACHE_NAME, 50);
+            return netResponse; // Importante: retornar la respuesta
+          });
+        });
+      }).catch(() => {
+        // Opcional: Si es una página HTML, podrías devolver un offline.html aquí
+      })
+    );
+  }
+});
