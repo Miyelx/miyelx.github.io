@@ -24,7 +24,7 @@ self.addEventListener("install", event => {
   );
 });
 
-// 2. Activación: Limpieza de versiones viejas
+// 2. Activación: Limpieza de cache vieja
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(keys => 
@@ -43,7 +43,7 @@ const limitarCache = (nombre, max) => {
   });
 };
 
-// 3. Estrategia de Fetch Diferenciada
+// 3. Fetch Diferenciado
 self.addEventListener("fetch", event => {
   const { request } = event;
   if (request.url.includes("tasas.json")) {
@@ -53,8 +53,7 @@ self.addEventListener("fetch", event => {
           const resClone = response.clone();
           caches.open(CACHE_NAME).then(cache => cache.put(request, resClone));
           return response;
-        })
-        .catch(() => caches.match(request)) // Si falla red, dar cahce
+        }).catch(() => caches.match(request)) // Sin red, dar cache
     );
   } else {
     event.respondWith(
