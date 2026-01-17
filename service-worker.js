@@ -1,4 +1,4 @@
-const CACHE_NAME = "cache-v7.34";
+const CACHE_NAME = "cache-v7.35";
 const ASSETS = [
   "./", 
   "index.html",
@@ -14,7 +14,7 @@ const ASSETS = [
   "img/MIG_inicio.png"
 ];
 
-// 1. Instalación de recursos
+// 1. Instalación
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
@@ -24,7 +24,7 @@ self.addEventListener("install", event => {
   );
 });
 
-// 2. Activación: Limpieza de cache vieja
+// 2. Activación
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(keys => 
