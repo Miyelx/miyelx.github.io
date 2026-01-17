@@ -1,4 +1,4 @@
-const CACHE_NAME = "cache-v7.35";
+const CACHE_NAME = "cache-v7.36";
 const ASSETS = [
   "./", 
   "index.html",
@@ -61,7 +61,7 @@ self.addEventListener("fetch", event => {
         return response || fetch(request).then(netResponse => {
           return caches.open(CACHE_NAME).then(cache => {
             cache.put(request, netResponse.clone());
-            limitarCache(CACHE_NAME, 50);
+            limitarCache(CACHE_NAME, 48);
             return netResponse;
           });
         });
