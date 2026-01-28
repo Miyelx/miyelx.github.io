@@ -1,6 +1,7 @@
 const CACHE_NAME = "cache-v7.5";
 const ASSETS = [
   "./", 
+  "sw.js",
   "index.html",
   "estilos.css",
   "convertidor.js",
