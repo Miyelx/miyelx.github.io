@@ -22,6 +22,5 @@
   "display": "standalone",
   "orientation":"portrait",
   "background_color": "#3F84FEFF",
-  "theme_color": "#000000",
   "display_override":["standalone","fullscreen"]
 }
