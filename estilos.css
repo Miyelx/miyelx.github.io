@@ -5,12 +5,8 @@
 }
 
 body {
-  background-image: url(img/fondo.webp);
+  background-image: url(img/fondo.webp) center/cover no-repeat fixed;
   backdrop-filter: blur(1.5px);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
